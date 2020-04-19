@@ -2,12 +2,15 @@ package com.michal.flightcheckin.integration;
 
 import com.michal.flightcheckin.integration.dto.Reservation;
 import com.michal.flightcheckin.integration.dto.ReservationUpdateRequest;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Component
 public class ReservationRestClientImpl implements ReservationRestClient {
-    private static final String RESERVATION_REST_URL = "http://localhost:8080/flightreservation/reservations/";
+
+    @Value("${com.michal.flightcheckin.integration.reservationREST.URL}")
+    private String RESERVATION_REST_URL;
 
     @Override
     public Reservation findReservation(long id) {
